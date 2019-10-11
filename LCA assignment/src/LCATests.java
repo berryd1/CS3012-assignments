@@ -27,7 +27,7 @@ public class LCATests {
 		ancestorTest.root.left.left = new Node(4);
 		ancestorTest.root.left.right = new Node(5);
 		ancestorTest.root.right.left = new Node(6);
-        ancestorTest.root.right.right = new Node(7);
+        	ancestorTest.root.right.right = new Node(7);
         
         assertEquals("LCA of 4 and 5: ",2,ancestorTest.findLowestCommonAncestor(4, 5));
         assertEquals("LCA of 6 and 7: ",3,ancestorTest.findLowestCommonAncestor(6, 7));
