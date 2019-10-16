@@ -66,5 +66,11 @@ public class DAGTests {
 		test5.addEdge(1, 2);
 		assertEquals("Testing edge count is 2", 2, test5.E());
 	}
+	
+	@Test
+	public void emptyLCATest() {
+		DAG test6 = new DAG(10);
+		assertEquals("Testing LCA is -1", -1, test6.findLowestCommonAncestor(1, 2));
+	}
 
 }
