@@ -53,5 +53,18 @@ public class DAGTests {
 		assertFalse(test4acyclic.hasCycle());
 		//Cycle doesn't exist, should return false
 	}
+	
+	@Test
+	public void addEdgeTest()
+	{
+		DAG test5 = new DAG(5);
+		test5.addEdge(0, 1);
+
+		test5.addEdge(-2, -5);
+		assertEquals("Testing edge count is 1", 1, test5.E());
+
+		test5.addEdge(1, 2);
+		assertEquals("Testing edge count is 2", 2, test5.E());
+	}
 
 }
