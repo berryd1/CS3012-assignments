@@ -1,3 +1,9 @@
+/*
+ *
+ *  @author: David Berry (berryd1) 
+ *  @dateOfSubmission: October 2019
+ *
+*/
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -72,5 +78,28 @@ public class DAGTests {
 		DAG test6 = new DAG(10);
 		assertEquals("Testing LCA is -1", -1, test6.findLowestCommonAncestor(1, 2));
 	}
+	
+	@Test
+	public void noCommonAncestorsLCATest(){
+		DAG test7 = new DAG(11);
+		
+		//-----1----5----
+		//---0-|---/-----
+		//-----2--3---4--
+		
+		test7.addEdge(0, 1);
+		test7.addEdge(0, 2);
+		test7.addEdge(1, 2);
+		test7.addEdge(2, 3);
+		test7.addEdge(3, 4);
+		test7.addEdge(1, 5);
+		test7.addEdge(3, 5);
+
+		assertEquals("Finding LCA when there is no LCA", 0, test7.findLowestCommonAncestor(3, 1));
+		assertEquals("", 2, test7.findLowestCommonAncestor(3, 2));
+		assertEquals("", 3, test7.findLowestCommonAncestor(4, 5));
+		assertEquals("Finding LCA when one node doesnt exist", -1, test7.findLowestCommonAncestor(7, 3));
+	}
+
 
 }
