@@ -31,5 +31,27 @@ public class DAGTests {
 		DAG test3 = new DAG(5);
 		assertEquals("", -1, test3.outdegree(8));	
 	}
+	
+	@Test
+	public void cyclingTest()
+	{
+		DAG test4cyclic = new DAG(20);
+		test4cyclic.addEdge(0, 1);
+		test4cyclic.addEdge(1, 2);
+		test4cyclic.addEdge(2, 0);
+
+		test4cyclic.findCycle(0);
+
+		assertTrue(test4cyclic.hasCycle());
+		//Cycle exists, should return true
+		DAG test4acyclic = new DAG(20);
+		test4acyclic.addEdge(0, 1);
+		test4acyclic.addEdge(1, 3);
+		test4acyclic.addEdge(2, 4);
+		test4acyclic.findCycle(0);
+		
+		assertFalse(test4acyclic.hasCycle());
+		//Cycle doesn't exist, should return false
+	}
 
 }
