@@ -1,3 +1,9 @@
+/*
+ *
+ *  @author: David Berry (berryd1)
+ *  @dateOfSubmission: October 2019 
+ *  
+*/
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -36,6 +42,53 @@ public class LCATests {
         assertEquals("LCA of 1 and 6: ",1,ancestorTest.findLowestCommonAncestor(1, 6));
         
 	}
-
 	
+	@Test 
+	public void unevenTreeTest () { 
+		LCA unevenTest = new LCA();
+		unevenTest.root = new Node(1);
+		unevenTest.root.right = new Node(2);
+		unevenTest.root.right.right = new Node(3);
+		
+		assertEquals("Uneven tree with three nodes: ", 2, unevenTest.findLowestCommonAncestor(2,3));	
+		assertEquals("Uneven tree with three nodes: ", 1, unevenTest.findLowestCommonAncestor(3, 1));
+	}
+	
+	@Test
+	public void nonExistingNodesTest()
+	{
+		LCA existanceTest = new LCA();
+		existanceTest.root = new Node(1);
+		existanceTest.root.left = new Node(2);
+		existanceTest.root.right = new Node(3);
+		existanceTest.root.left.left = new Node(4);
+		existanceTest.root.left.right = new Node(5);
+		existanceTest.root.right.left = new Node(6);
+		existanceTest.root.right.right = new Node(7);
+		
+		assertEquals("LCA of 6 and 7: ", 3, existanceTest.findLowestCommonAncestor(6,7));
+		assertEquals("LCA of 2 and 16: ", -1, existanceTest.findLowestCommonAncestor(2,16));
+		assertEquals("LCA of 8 and 12: ", -1, existanceTest.findLowestCommonAncestor(8,12));
+		
+	}
+	
+	@Test
+	public void allSameNodeTest() {
+		LCA sameTest = new LCA();
+		sameTest.root = new Node(3);
+		sameTest.root.left = new Node(3);
+		sameTest.root.right = new Node(3);
+		sameTest.root.left.left = new Node(3);
+		sameTest.root.left.right = new Node(3);
+		
+		assertEquals("LCA of 3 and 3: ",3,sameTest.findLowestCommonAncestor(3, 3));
+	}
+	
+	@Test
+	public void treeSize1Test(){
+		LCA treeSizeTest = new LCA();
+		treeSizeTest.root = new Node(1);
+		assertEquals("LCA of 1 and 0: ",-1,treeSizeTest.findLowestCommonAncestor(1, 0));
+		
+	}
 }
