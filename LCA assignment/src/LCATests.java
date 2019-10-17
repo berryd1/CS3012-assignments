@@ -1,3 +1,9 @@
+/*
+ *
+ *  @author: David Berry (berryd1)
+ *  @dateOfSubmission: October 2019 
+ *  
+*/
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -35,6 +41,17 @@ public class LCATests {
         assertEquals("LCA of 1 and 7: ",1,ancestorTest.findLowestCommonAncestor(1, 7));
         assertEquals("LCA of 1 and 6: ",1,ancestorTest.findLowestCommonAncestor(1, 6));
         
+	}
+	
+	@Test 
+	public void unevenTreeTest () { 
+		LCA unevenTest = new LCA();
+		unevenTest.root = new Node(1);
+		unevenTest.root.right = new Node(2);
+		unevenTest.root.right.right = new Node(3);
+		
+		assertEquals("Uneven tree with three nodes: ", 2, unevenTest.findLowestCommonAncestor(2,3));	
+		assertEquals("Uneven tree with three nodes: ", 1, unevenTest.findLowestCommonAncestor(3, 1));
 	}
 
 	
